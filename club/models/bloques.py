@@ -12,9 +12,17 @@ class Bloque(models.Model):
     disponibilidad = models.BooleanField(default=True)
     
     mesas_id: int
-    mesas = models.ManyToManyField("club.Mesas",
+    mesas = models.ManyToManyField("club.Mesa",
                                    related_name='bloques',
                                    help_text='Relacion a las mesas que son del bloque')
+    
+    precio_bloque_id: int
+    precio_bloque = models.ForeignKey("club.PrecioBloque",
+                                      null=False,
+                                      blank=False,
+                                      related_name='bloques',
+                                      help_text='Relacion al precio del bloque en cuestion',
+                                      on_delete=models.DO_NOTHING)
 
     en_donde_es_rentado_id: int
     en_donde_es_rentado = models.ForeignKey("club.Evento",

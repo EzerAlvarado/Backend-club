@@ -2,7 +2,7 @@ from django.db import models
 
 class Cliente(models.Model):
     """
-    Modelo de Ganancias
+    Modelo de Clientes
     """  
     nombre = models.CharField(max_length=200,
                               null=False,
@@ -16,7 +16,7 @@ class Cliente(models.Model):
 
     numero_de_celular = models.BigIntegerField(null=True,
                                                blank=True,
-                                               help_text='Numero de telefono del usuario')
+                                               help_text='Numero de telefono del cliente')
     
     correo_cliente = models.CharField(max_length=150,
                                       null=True,
@@ -34,5 +34,5 @@ class Cliente(models.Model):
         ]
 
     def __str__(self):
-        return f"Pk: {self.pk} | Total Ganancia: {self.total} | Fecha: {self.fecha} "
+        return f"Pk: {self.pk} | Nombre Cliente: {self.nombre} | Tipo De Cliente: {self.tipo_de_cliente} "
 

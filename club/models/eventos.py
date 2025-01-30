@@ -19,23 +19,12 @@ class Evento(models.Model):
                                     help_text='Indica cualquier información referente al evento')
     
     bloque_id: int
-    bloque = models.ForeignKey("club.Bloque",
-                               null=False,
-                               blank=False,
-                               related_name='bloques',
-                               help_text='Relacion al bloque donde esta el evento',
-                               on_delete=models.DO_NOTHING)
-    
-    precio_bloque_id: int
-    precio_bloque = models.ForeignKey("club.PrecioBloque",
-                                      null=False,
-                                      blank=False,
-                                      related_name='bloques',
-                                      help_text='Relacion al precio del bloque en cuestion',
-                                      on_delete=models.DO_NOTHING)
+    bloque = models.ManyToManyField("club.Bloque",
+                                    related_name='bloques',
+                                    help_text='Relacion al bloque donde esta el evento')
     
     cliente_rentador_id: int
-    cliente_rentador = models.ForeignKey("club.ClienteRentador",
+    cliente_rentador = models.ForeignKey("club.Cliente",
                                       null=False,
                                       blank=False,
                                       related_name='bloques',

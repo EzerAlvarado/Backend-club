@@ -2,7 +2,7 @@ from django.db import models
 
 class Mesa(models.Model):
     """
-    Modelo de Bloques
+    Modelo de Mesas
     """  
     descripcion = models.CharField(max_length=50,
                                    null=False,
