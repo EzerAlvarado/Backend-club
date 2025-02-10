@@ -26,6 +26,7 @@ class OrdenDeCompraModelSerializer(serializers.ModelSerializer):
             'precio_orden',
             'cargo',
             'producto',
+            'producto__nombre_producto',
             'usuario_responsable',
         )        
         read_only_fields = ('id',)
