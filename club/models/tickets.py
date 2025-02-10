@@ -13,6 +13,14 @@ class Ticket(models.Model):
     fecha = models.DateTimeField(null=True,
                                 blank=True,
                                 help_text='Fecha del dia de la ganacia')
+    
+    cargo = models.ForeignKey("club.Cargo",
+                            null=True,
+                            blank=False,
+                            related_name='tickets',
+                            help_text='Relacion al cargo',
+                            on_delete=models.DO_NOTHING)
+
 
     class Meta:
         db_table = 'tickets'

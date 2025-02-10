@@ -13,3 +13,4 @@ from .productos import Producto
 from .tickets import Ticket
 from .usuarios import Usuario
 from .precio_bloque import PrecioBloque
+from .cargos import Cargo

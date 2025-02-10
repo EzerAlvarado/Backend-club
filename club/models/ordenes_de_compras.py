@@ -3,7 +3,9 @@ from django.db import models
 class OrdenDeCompra(models.Model):
     """
     Modelo de Ordenes de compras
-    """  
+    """ 
+    completado = models.BooleanField(default=False)
+    
     cantidad = models.IntegerField(null=False,
                                    blank=False,
                                    help_text='cantidad de producto solicitado')
@@ -26,6 +28,13 @@ class OrdenDeCompra(models.Model):
                                  help_text='Relacion del producto que se ordeno',
                                  on_delete=models.DO_NOTHING)
     
+    cargo = models.ForeignKey("club.Cargo",
+                            null=True,
+                            blank=False,
+                            related_name='ordenes_de_compras',
+                            help_text='Relacion al cargo',
+                            on_delete=models.DO_NOTHING)
+
     usuario_responsable = models.ForeignKey("club.Usuario",
                                             null=False,
                                             blank=False,
