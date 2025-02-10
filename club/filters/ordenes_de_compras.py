@@ -17,5 +17,6 @@ class OrdenDeCompraFilter(filters.FilterSet):
             'precio_orden',
             'mesas',
             'producto',
+            'listo_a_pagar',
             'usuario_responsable',
         )        
