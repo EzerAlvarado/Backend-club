@@ -14,6 +14,7 @@ class OrdenDeCompraFilter(filters.FilterSet):
             'id',
             'cantidad',
             'fecha_de_orden',
+            'precio_orden',
             'mesas',
             'producto',
             'usuario_responsable',

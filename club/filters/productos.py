@@ -13,5 +13,6 @@ class ProductoFilter(filters.FilterSet):
         fields = (
             'id',
             'nombre_producto',
+            'precio',
             'categoria',
         )        

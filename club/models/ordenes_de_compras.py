@@ -6,6 +6,10 @@ class OrdenDeCompra(models.Model):
     """ 
     completado = models.BooleanField(default=False)
     
+    precio_orden = models.DecimalField(max_digits=10, decimal_places=2,
+                                        null=True,
+                                        blank=False)
+    
     cantidad = models.IntegerField(null=False,
                                    blank=False,
                                    help_text='cantidad de producto solicitado')

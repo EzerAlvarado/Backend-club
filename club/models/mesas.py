@@ -9,10 +9,6 @@ class Mesa(models.Model):
                                    blank=False,
                                    help_text='Tipo de mesa')
 
-    capacidad_personas = models.IntegerField(null=False,
-                                             blank=False,
-                                             help_text='Capacidad de personas que permite la mesa')
-    
     esta_disponible = models.BooleanField(default=True)
     
     class Meta:

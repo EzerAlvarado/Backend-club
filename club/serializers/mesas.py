@@ -20,7 +20,6 @@ class MesaModelSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'descripcion',
-            'capacidad_personas',
             'esta_disponible',
         )        
         read_only_fields = ('id',)

@@ -20,6 +20,7 @@ class ProductoModelSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'nombre_producto',
+            'precio',
             'categoria',
         )        
         read_only_fields = ('id',)

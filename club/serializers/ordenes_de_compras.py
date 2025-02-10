@@ -23,6 +23,7 @@ class OrdenDeCompraModelSerializer(serializers.ModelSerializer):
             'fecha_de_orden',
             'completado',
             'mesas',
+            'precio_orden',
             'cargo',
             'producto',
             'usuario_responsable',

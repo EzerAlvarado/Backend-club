@@ -13,6 +13,5 @@ class MesaFilter(filters.FilterSet):
         fields = (
             'id',
             'descripcion',
-            'capacidad_personas',
             'esta_disponible',
         )        
