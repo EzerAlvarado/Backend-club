@@ -9,11 +9,9 @@ from rest_framework import serializers
 # Models
 from club.models import OrdenDeCompra
 
+
 class OrdenDeCompraModelSerializer(serializers.ModelSerializer):
-    """
-        serializer para crear, editar, obtener y eliminar
-        a un OrdenDeCompra
-    """
+    nombre_producto = serializers.SerializerMethodField()
 
     class Meta:
         model = OrdenDeCompra
@@ -26,7 +24,9 @@ class OrdenDeCompraModelSerializer(serializers.ModelSerializer):
             'precio_orden',
             'cargo',
             'producto',
-            'producto__nombre_producto',
+            'nombre_producto', 
             'usuario_responsable',
-        )        
-        read_only_fields = ('id',)
+        )
+
+    def get_nombre_producto(self, obj):
+        return obj.producto.nombre_producto if obj.producto else None
