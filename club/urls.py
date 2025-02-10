@@ -15,6 +15,7 @@ router.register('precio-bloque',views.PrecioBloqueViewSet)
 router.register('productos',views.ProductoViewSet)
 router.register('tickets',views.TicketViewSet)
 router.register('usuarios',views.UsuarioViewSet)
+router.register('cargos',views.CargoViewSet)
 
 
 urlpatterns=[
