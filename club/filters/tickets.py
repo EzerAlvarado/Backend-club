@@ -12,6 +12,6 @@ class TicketFilter(filters.FilterSet):
         model = Ticket
         fields = (
             'id',
-            'cantidad',
-            'fecha_de_orden',
+            'total',
+            'fecha',
         )        
