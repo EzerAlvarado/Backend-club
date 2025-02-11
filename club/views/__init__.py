@@ -9,3 +9,4 @@ from .precio_bloque import PrecioBloqueViewSet
 from .productos import ProductoViewSet
 from .tickets import TicketViewSet
 from .usuarios import UsuarioViewSet
+from .cargos import CargoViewSet
