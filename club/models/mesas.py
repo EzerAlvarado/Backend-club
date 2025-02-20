@@ -22,5 +22,5 @@ class Mesa(models.Model):
         ]
 
     def __str__(self):
-        return f"Pk: {self.pk} | Descripcion: {self.descripcion} | Capacidad: {self.capacidad_personas} "
+        return f"Pk: {self.pk} | Descripcion: {self.descripcion}  "
 

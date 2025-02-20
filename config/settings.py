@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ss%0n81pch0rbt8=_aoskq_j=nwfb3403hxhxe&scm^f&c&$6d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.66','127.0.0.1']
 
 BASE_APPS = [
     "django.contrib.admin",
@@ -89,8 +89,8 @@ DATABASES = {
         'NAME': 'club',
         'USER': 'root',
         'PASSWORD': 'emma025125r',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': '',
+        'PORT': '3306',
     }
 }
 
