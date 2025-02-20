@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ss%0n81pch0rbt8=_aoskq_j=nwfb3403hxhxe&scm^f&c&$6d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.66','127.0.0.1']
 
 BASE_APPS = [
     "django.contrib.admin",
@@ -38,6 +38,7 @@ BASE_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    'corsheaders',
 ]
 
 OWN_APPS = [
@@ -48,6 +49,7 @@ INSTALLED_APPS = BASE_APPS + THIRD_APPS + OWN_APPS
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -86,9 +88,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'club',
         'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '',
+        'PASSWORD': 'emma025125r',
+        'HOST': '',
+        'PORT': '3306',
     }
 }
 
@@ -133,3 +135,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CORS_ALLOW_ALL_ORIGINS = True

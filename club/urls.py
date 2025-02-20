@@ -18,6 +18,7 @@ router.register('usuarios',views.UsuarioViewSet)
 router.register('cargos',views.CargoViewSet)
 
 
+
 urlpatterns=[
     path('', include(router.urls))
 ]
