@@ -17,5 +17,4 @@ class EventoFilter(filters.FilterSet):
             'fecha_final_de_evento',
             'observaciones',
             'bloque',
-            'cliente_rentador',
-        )        
+        )

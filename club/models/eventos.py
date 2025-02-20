@@ -3,8 +3,18 @@ from django.db import models
 class Evento(models.Model):
     """
     Modelo de eventos
-    """  
-    pago_renta = models.BooleanField(default=False)
+    """
+    nombre_rentador = models.CharField(max_length=200,
+                              null=True,
+                              blank=True,
+                              help_text='Nombre del cliente que renta')
+    
+    correo_rentador = models.CharField(max_length=150,
+                                      null=True,
+                                      blank=True,
+                                      help_text='Correo del cliente que renta')
+    
+    pago_renta = models.BooleanField(default=True)
     
     fecha_inicio_de_evento = models.DateTimeField(null=True, 
                                                 blank=True, 
@@ -22,15 +32,7 @@ class Evento(models.Model):
     bloque = models.ManyToManyField("club.Bloque",
                                     related_name='bloques',
                                     help_text='Relacion al bloque donde esta el evento')
-    
-    cliente_rentador_id: int
-    cliente_rentador = models.ForeignKey("club.Cliente",
-                                      null=False,
-                                      blank=False,
-                                      related_name='bloques',
-                                      help_text='Relacion al cliente que renta',
-                                      on_delete=models.DO_NOTHING)
-    
+
     class Meta:
         db_table = 'eventos'
         ordering = ['pk']

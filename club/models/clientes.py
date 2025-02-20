@@ -5,13 +5,13 @@ class Cliente(models.Model):
     Modelo de Clientes
     """  
     nombre = models.CharField(max_length=200,
-                              null=False,
-                              blank=False,
+                              null=True,
+                              blank=True,
                               help_text='Nombre del cliente')
     
     tipo_de_cliente =models.CharField(max_length=50,
-                                      null=False,
-                                      blank=False,
+                                      null=True,
+                                      blank=True,
                                       help_text='Tipo de cliente Vip, Frecuente, Nuevo, etc')
 
     numero_de_celular = models.BigIntegerField(null=True,
