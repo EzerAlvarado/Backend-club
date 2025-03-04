@@ -25,6 +25,13 @@ class Usuario(models.Model):
                                       null=True,
                                       blank=True,
                                       help_text='Correo del cliente')
+    contrasena = models.CharField(
+        max_length=128,
+        default="defaultpass",
+        null=False,
+        blank=False,
+        help_text='Contraseña del usuario'
+    )
 
     class Meta:
         db_table = 'usuario'
@@ -37,5 +44,5 @@ class Usuario(models.Model):
         ]
 
     def __str__(self):
-        return f"Pk: {self.pk} | Nombre Cliente: {self.nombre} | Tipo De Cliente: {self.tipo_de_cliente} "
+        return f"Pk: {self.pk} | Nombre Cliente: {self.nombre}  " # | Tipo De Cliente: {self.tipo_de_cliente}
 

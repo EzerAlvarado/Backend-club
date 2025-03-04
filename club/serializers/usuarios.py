@@ -23,5 +23,6 @@ class UsuarioModelSerializer(serializers.ModelSerializer):
             'nombre',
             'numero_de_celular',
             'correo_cliente',
+            'contrasena',
         )        
         read_only_fields = ('id',)

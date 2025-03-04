@@ -19,8 +19,8 @@ class TicketModelSerializer(serializers.ModelSerializer):
         model = Ticket
         fields = (
             'id',
-            'cantidad',
+            'total',
+            'fecha',
             'cargo',
-            'fecha_de_orden',
         )        
         read_only_fields = ('id',)
