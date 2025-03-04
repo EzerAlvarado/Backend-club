@@ -25,6 +25,9 @@ class Usuario(models.Model):
                                       null=True,
                                       blank=True,
                                       help_text='Correo del cliente')
+    
+    eliminado = models.BooleanField(default=False,
+                                    help_text='Bandera para dar de baja un usuario')
 
     class Meta:
         db_table = 'usuario'

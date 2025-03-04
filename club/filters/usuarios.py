@@ -14,6 +14,7 @@ class UsuarioFilter(filters.FilterSet):
             'id',
             'estado_solicitud',
             'nombre',
+            'eliminado',
             'numero_de_celular',
             'correo_cliente',
         )        
