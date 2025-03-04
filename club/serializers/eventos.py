@@ -24,5 +24,7 @@ class EventoModelSerializer(serializers.ModelSerializer):
             'fecha_final_de_evento',
             'observaciones',
             'bloque',
+            'correo_rentador',
+            'nombre_rentador',
         )
         read_only_fields = ('id',)
