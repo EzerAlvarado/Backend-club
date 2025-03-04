@@ -8,4 +8,4 @@ class CargoFilter(django_filters.FilterSet):
 
     class Meta:
         model = Cargo
-        fields = ['estado', 'fecha_cobro', 'usuario_responsable', 'mesa']
+        fields = ['estado', 'fecha_cobro', 'usuario_responsable', 'nota','mesa']

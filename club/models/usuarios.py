@@ -32,7 +32,9 @@ class Usuario(models.Model):
         blank=False,
         help_text='Contraseña del usuario'
     )
-
+    
+    eliminado = models.BooleanField(default=False,
+                                    help_text='Bandera para dar de baja un usuario')
     class Meta:
         db_table = 'usuario'
         ordering = ['pk']

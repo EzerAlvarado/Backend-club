@@ -21,6 +21,7 @@ class UsuarioModelSerializer(serializers.ModelSerializer):
             'id',
             'estado_solicitud',
             'nombre',
+            'eliminado',
             'numero_de_celular',
             'correo_cliente',
             'contrasena',
