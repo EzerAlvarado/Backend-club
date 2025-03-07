@@ -34,6 +34,12 @@ class OrdenDeCompra(models.Model):
                                  help_text='Relacion del producto que se ordeno',
                                  on_delete=models.DO_NOTHING)
     
+    nota = models.TextField(
+        null=True,
+        blank=True
+        )
+    
+    
     cargo = models.ForeignKey("club.Cargo",
                             null=True,
                             blank=False,
