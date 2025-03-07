@@ -10,8 +10,4 @@ from club.models import Ticket
 class TicketFilter(filters.FilterSet):
     class Meta:
         model = Ticket
-        fields = (
-            'id',
-            'total',
-            'fecha',
-        )        
+        fields = ['id', 'total', 'fecha', 'cargo']     

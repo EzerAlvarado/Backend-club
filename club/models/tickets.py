@@ -1,26 +1,9 @@
 from django.db import models
 
 class Ticket(models.Model):
-    """
-    Modelo de Tickets
-    """  
-    total = models.DecimalField(max_digits=18,
-                                null=True,
-                                blank=True,
-                                help_text='Total de ganancias diarias',
-                                decimal_places=2)
-    
-    fecha = models.DateTimeField(null=True,
-                                blank=True,
-                                help_text='Fecha del dia de la ganacia')
-    
-    cargo = models.ForeignKey("club.Cargo",
-                            null=True,
-                            blank=False,
-                            related_name='tickets',
-                            help_text='Relacion al cargo',
-                            on_delete=models.DO_NOTHING)
-
+    total = models.DecimalField(null=True,max_digits=18, decimal_places=2, default=0.00, help_text='Total de ganancias diarias')
+    fecha = models.DateTimeField(null=True, auto_now_add=True, help_text='Fecha del día de la ganancia')
+    cargo = models.ForeignKey("club.Cargo", null=True, blank=False, related_name='tickets', on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'tickets'
@@ -33,5 +16,4 @@ class Ticket(models.Model):
         ]
 
     def __str__(self):
-        return f"Pk: {self.pk} | Total Ganancia: {self.total} | Fecha: {self.fecha} "
-
+        return f"Pk: {self.pk} | Total Ganancia: {self.total} | Fecha: {self.fecha}"

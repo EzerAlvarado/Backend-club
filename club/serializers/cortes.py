@@ -17,12 +17,5 @@ class CorteModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Corte
-        fields = (
-            'id',
-            'fecha_apertura',
-            'fecha_cierre',
-            'dinero_caja_inicio',
-            'dinero_caja_fin',
-            'observaciones',
-        )        
+        fields = '__all__'
         read_only_fields = ('id',)

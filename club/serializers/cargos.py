@@ -4,4 +4,4 @@ from club.models import Cargo
 class CargoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cargo
-        fields = ['id', 'total_cobro', 'fecha_cobro', 'usuario_responsable','nota', 'estado', 'mesa']
+        fields = '__all__'

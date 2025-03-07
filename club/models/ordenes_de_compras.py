@@ -1,58 +1,24 @@
 from django.db import models
 
 class OrdenDeCompra(models.Model):
-    """
-    Modelo de Ordenes de compras
-    """ 
-    completado = models.BooleanField(default=False)
-    
+    ESTADO_ORDEN = [
+        ('pendiente', 'Pendiente'),
+        ('incluido_en_cargo', 'Incluido en Cargo'),
+        ('cancelado', 'Cancelado'),
+    ]
+
+    estado = models.CharField(max_length=20, choices=ESTADO_ORDEN, default='pendiente')
     listo_a_pagar = models.BooleanField(default=False)
+    precio_orden = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=False)
+    cantidad = models.IntegerField(null=False, blank=False, help_text='Cantidad de producto solicitado')
+    fecha_de_orden = models.DateField(null=False, blank=False, help_text='Fecha de la orden de compra')
     
-    precio_orden = models.DecimalField(max_digits=10, decimal_places=2,
-                                        null=True,
-                                        blank=False)
+    mesa = models.ForeignKey("club.Mesa", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
+    producto = models.ForeignKey("club.Producto", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
+    nota = models.TextField(null=True, blank=True)
     
-    cantidad = models.IntegerField(null=False,
-                                   blank=False,
-                                   help_text='cantidad de producto solicitado')
-
-    fecha_de_orden = models.DateField(null=False,
-                                      blank=False,
-                                      help_text='fecha de la orden de compra')
-    
-    mesas = models.ForeignKey("club.Mesa",
-                              null=False,
-                              blank=False,
-                              related_name='ordenes_de_compras',
-                              help_text='Relacion a la mesa donde se hizo la orden',
-                              on_delete=models.DO_NOTHING)
-    
-    producto = models.ForeignKey("club.Producto",
-                                 null=False,
-                                 blank=False,
-                                 related_name='ordenes_de_compras',
-                                 help_text='Relacion del producto que se ordeno',
-                                 on_delete=models.DO_NOTHING)
-    
-    nota = models.TextField(
-        null=True,
-        blank=True
-        )
-    
-    
-    cargo = models.ForeignKey("club.Cargo",
-                            null=True,
-                            blank=False,
-                            related_name='ordenes_de_compras',
-                            help_text='Relacion al cargo',
-                            on_delete=models.DO_NOTHING)
-
-    usuario_responsable = models.ForeignKey("club.Usuario",
-                                            null=False,
-                                            blank=False,
-                                            related_name='ordenes_de_compras',
-                                            help_text='Relacion del usuario que hizo la orden',
-                                            on_delete=models.DO_NOTHING)
+    cargo = models.ForeignKey("club.Cargo", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
+    usuario_responsable = models.ForeignKey("club.Usuario", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'ordenes_de_compras'
@@ -65,5 +31,4 @@ class OrdenDeCompra(models.Model):
         ]
 
     def __str__(self):
-        return f"Pk: {self.pk} | Cantidad: {self.cantidad} | Fecha: {self.fecha_de_orden} "
-
+        return f"Pk: {self.pk} | Cantidad: {self.cantidad} | Fecha: {self.fecha_de_orden} | Estado: {self.estado}"

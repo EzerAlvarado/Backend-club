@@ -15,20 +15,7 @@ class OrdenDeCompraModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrdenDeCompra
-        fields = (
-            'id',
-            'cantidad',
-            'fecha_de_orden',
-            'completado',
-            'mesas',
-            'precio_orden',
-            'nota',
-            'cargo',
-            'listo_a_pagar',
-            'producto',
-            'nombre_producto', 
-            'usuario_responsable',
-        )
+        fields = '__all__'
 
     def get_nombre_producto(self, obj):
         return obj.producto.nombre_producto if obj.producto else None
