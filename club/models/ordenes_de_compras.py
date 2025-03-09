@@ -11,14 +11,14 @@ class OrdenDeCompra(models.Model):
     listo_a_pagar = models.BooleanField(default=False)
     precio_orden = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=False)
     cantidad = models.IntegerField(null=False, blank=False, help_text='Cantidad de producto solicitado')
-    fecha_de_orden = models.DateField(null=False, blank=False, help_text='Fecha de la orden de compra')
+    fecha_de_orden = models.DateField(auto_now_add=True, null=False, blank=False, help_text='Fecha de la orden de compra')
     
     mesa = models.ForeignKey("club.Mesa", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
     producto = models.ForeignKey("club.Producto", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
     nota = models.TextField(null=True, blank=True)
     
     cargo = models.ForeignKey("club.Cargo", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
-    usuario_responsable = models.ForeignKey("club.Usuario", null=True, blank=True, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
+    usuario_responsable = models.ForeignKey("club.Usuario",  null=False, blank=False, related_name='ordenes_de_compras', on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'ordenes_de_compras'

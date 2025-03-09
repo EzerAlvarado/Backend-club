@@ -1,7 +1,9 @@
 from club.models import OrdenDeCompra, Cargo, Ticket
 from django.db import transaction
+from django.utils import timezone
+from decimal import Decimal
 
-def crear_orden(mesa, producto, cantidad):
+def crear_orden(mesa, producto, cantidad,usuario_responsable):
     """
     Crea una nueva orden de compra para una mesa y actualiza el cargo correspondiente.
     """
@@ -10,17 +12,18 @@ def crear_orden(mesa, producto, cantidad):
             mesa=mesa, 
             producto=producto, 
             cantidad=cantidad,
+            usuario_responsable=usuario_responsable,
+            fecha_de_orden=timezone.now(),
             estado='pendiente'
         )
         
-        # Buscar si ya existe un cargo para la mesa
-        cargo, creado = Cargo.objects.get_or_create(mesa=mesa, pagado=False)
+        cargo, creado = Cargo.objects.get_or_create(mesa=mesa, estado='pendiente',usuario_responsable=usuario_responsable)
         
-        # Sumar el total de la nueva orden al cargo
-        cargo.total += producto.precio * cantidad
+        cargo.total_cobro = Decimal(cargo.total_cobro)  
+
+        cargo.total_cobro += Decimal(producto.precio) * Decimal(cantidad)
         cargo.save()
-        
-        # Marcar la orden como incluida en el cargo
+
         orden.estado = 'incluido_en_cargo'
         orden.save()
 
@@ -31,18 +34,17 @@ def pagar_cargo(cargo):
     """
     Paga un cargo y genera un ticket asociado.
     """
-    if cargo.pagado:
+    if cargo.estado == 'pagado':
         raise ValueError("Este cargo ya está pagado.")
 
     with transaction.atomic():
-        # Marcar el cargo como pagado
-        cargo.pagado = True
+        cargo.estado = 'pagado'
+        cargo.fecha_cobro = timezone.now()  
         cargo.save()
 
-        # Crear un ticket con el total pagado
         ticket = Ticket.objects.create(
             cargo=cargo,
-            total_pagado=cargo.total
+            total=cargo.total_cobro
         )
 
         return ticket

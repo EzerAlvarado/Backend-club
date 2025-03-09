@@ -19,7 +19,7 @@ class CargoViewSet(viewsets.ModelViewSet):
         Endpoint para pagar un cargo y generar un ticket.
         """
         try:
-            cargo = Cargo.objects.get(id=pk, pagado=False)
+            cargo = Cargo.objects.get(id=pk, estado='pendiente')
             ticket = pagar_cargo(cargo)
             return Response(TicketModelSerializer(ticket).data, status=status.HTTP_200_OK)
         except Cargo.DoesNotExist:

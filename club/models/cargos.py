@@ -12,5 +12,15 @@ class Cargo(models.Model):
     estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='pendiente')
     mesa = models.ForeignKey('club.Mesa', on_delete=models.DO_NOTHING) 
 
+    class Meta:
+        db_table = 'cargos'
+        ordering = ['pk']
+        verbose_name = 'Cargo'
+        verbose_name_plural = 'Cargos'
+        permissions = [
+            ['autorizar_cargo', f'Puede Autorizar {verbose_name_plural}'],
+            ['viewcrud_cargo', f'Puede Visualizar {verbose_name_plural} en el menú'],
+        ]
+
     def __str__(self):
         return f"Cargo {self.id} - {self.estado}"
