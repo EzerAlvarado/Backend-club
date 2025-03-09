@@ -21,3 +21,5 @@ urlpatterns = [
     path('ordenes/crear/', views.OrdenDeCompraViewSet.as_view({'post': 'crear_orden'}), name='crear_orden'),
     path('cargos/<int:pk>/pagar/', views.CargoViewSet.as_view({'post': 'pagar'}), name='pagar_cargo'),
 ]
+#url para ver un ticket provisional
+#ejemplo: http://localhost:8000/club/cargos/ticket_provisional/?mesa_id=1
