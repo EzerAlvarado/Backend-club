@@ -9,7 +9,8 @@ class Usuario(models.Model):
         ('M', 'Mesero'),
         ('C', 'Caja'),
         ('B', 'Bartender'),
-    ]    
+        ('A', 'Admin'),
+    ]
     estado_solicitud =  models.CharField(max_length=1,choices=OPCIONES_USUARIO,)
     
     nombre = models.CharField(max_length=200,
