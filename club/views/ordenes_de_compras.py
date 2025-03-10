@@ -1,13 +1,26 @@
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
+from collections import defaultdict
 from club.models import Mesa, Producto, OrdenDeCompra, Usuario
 from club.serializers.ordenes_de_compras import OrdenDeCompraModelSerializer
-from club.serializers.services import crear_orden, pagar_cargo
+from club.serializers.services import crear_orden
 
 class OrdenDeCompraViewSet(viewsets.ModelViewSet):
     queryset = OrdenDeCompra.objects.all()
     serializer_class = OrdenDeCompraModelSerializer
+    
+    def list(self, request, *args, **kwargs):
+        """
+        Retorna las órdenes de compra agrupadas por mesa.
+        """
+        ordenes = self.get_queryset().filter(listo_a_pagar=False)
+        data_agrupada = defaultdict(list)
+
+        for orden in ordenes:
+            data_agrupada[orden.mesa_id].append(OrdenDeCompraModelSerializer(orden).data)
+
+        return Response(data_agrupada)
 
     @action(detail=False, methods=['post'])
     def crear_orden(self, request):

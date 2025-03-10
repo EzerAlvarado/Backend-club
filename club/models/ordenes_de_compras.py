@@ -10,7 +10,7 @@ class OrdenDeCompra(models.Model):
 
     estado = models.CharField(max_length=20, choices=ESTADO_ORDEN, default='pendiente')
     listo_a_pagar = models.BooleanField(default=False)
-    precio_orden = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=False)
+    precio_orden = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     cantidad = models.IntegerField(null=False, blank=False, help_text='Cantidad de producto solicitado')
     fecha_de_orden = models.DateField(auto_now_add=True, null=False, blank=False, help_text='Fecha de la orden de compra')
     
