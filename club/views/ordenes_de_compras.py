@@ -17,22 +17,18 @@ class OrdenDeCompraViewSet(viewsets.ModelViewSet):
         mesa_id = request.data.get('mesa_id')
         producto_id = request.data.get('producto_id')
         cantidad = request.data.get('cantidad')
+        nota = request.data.get('nota')
         usuario_responsable_id = request.data.get('usuario_responsable_id') 
-
+        
         if not mesa_id or not producto_id or not cantidad or not usuario_responsable_id:
             return Response({'error': 'Faltan datos'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-
             mesa = Mesa.objects.get(id=mesa_id)
             producto = Producto.objects.get(id=producto_id)
-
-            if not usuario_responsable_id:
-                return Response({'error': 'El campo usuario_responsable_id es obligatorio'}, status=status.HTTP_400_BAD_REQUEST)
-
             usuario_responsable = Usuario.objects.get(id=usuario_responsable_id)
 
-            orden = crear_orden(mesa, producto, int(cantidad), usuario_responsable)
+            orden = crear_orden(mesa, producto, int(cantidad), usuario_responsable, nota)
 
             return Response(OrdenDeCompraModelSerializer(orden).data, status=status.HTTP_201_CREATED)
         

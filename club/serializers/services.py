@@ -3,7 +3,7 @@ from django.db import transaction
 from django.utils import timezone
 from decimal import Decimal
 
-def crear_orden(mesa, producto, cantidad,usuario_responsable):
+def crear_orden(mesa, producto, cantidad, usuario_responsable, nota):
     """
     Crea una nueva orden de compra para una mesa y actualiza el cargo correspondiente.
     """
@@ -13,6 +13,7 @@ def crear_orden(mesa, producto, cantidad,usuario_responsable):
             producto=producto, 
             cantidad=cantidad,
             usuario_responsable=usuario_responsable,
+            nota=nota,
             fecha_de_orden=timezone.now(),
             estado='pendiente'
         )
