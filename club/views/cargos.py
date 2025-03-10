@@ -28,10 +28,6 @@ class CargoViewSet(viewsets.ModelViewSet):
         except ValueError as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-class CargoViewSet(viewsets.ModelViewSet):
-    queryset = Cargo.objects.all()
-    serializer_class = TicketProvisionalSerializer
-
     @action(detail=False, methods=['get'])
     def ticket_provisional(self, request):
         """
@@ -45,7 +41,7 @@ class CargoViewSet(viewsets.ModelViewSet):
         try:
             mesa_id = int(mesa_id)
             cargos = Cargo.objects.filter(mesa_id=mesa_id, estado='pendiente')
-            
+
             if not cargos.exists():
                 return Response({'error': 'No hay un cargo pendiente para esta mesa'}, status=status.HTTP_404_NOT_FOUND)
 

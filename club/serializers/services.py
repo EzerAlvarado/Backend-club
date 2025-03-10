@@ -45,6 +45,7 @@ def pagar_cargo(cargo):
 
         ticket = Ticket.objects.create(
             cargo=cargo,
+            fecha=timezone.now(),
             total=cargo.total_cobro
         )
 
