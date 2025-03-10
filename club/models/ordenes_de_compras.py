@@ -4,6 +4,7 @@ class OrdenDeCompra(models.Model):
     ESTADO_ORDEN = [
         ('pendiente', 'Pendiente'),
         ('incluido_en_cargo', 'Incluido en Cargo'),
+        ('pagado', 'Pagado'),
         ('cancelado', 'Cancelado'),
     ]
 

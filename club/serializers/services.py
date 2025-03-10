@@ -42,7 +42,9 @@ def pagar_cargo(cargo):
         cargo.estado = 'pagado'
         cargo.fecha_cobro = timezone.now()  
         cargo.save()
-
+        
+        OrdenDeCompra.objects.filter(mesa=cargo.mesa, estado='incluido_en_cargo').update(estado='pagado')
+        
         ticket = Ticket.objects.create(
             cargo=cargo,
             fecha=timezone.now(),
