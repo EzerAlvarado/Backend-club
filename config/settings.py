@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ss%0n81pch0rbt8=_aoskq_j=nwfb3403hxhxe&scm^f&c&$6d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.137.47','127.0.0.1']
 
 BASE_APPS = [
     "django.contrib.admin",
@@ -89,10 +89,15 @@ DATABASES = {
         'NAME': 'club',
         'USER': 'root',
         'PASSWORD': '12345678',
-        'HOST': '',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED",
+        },
+        'ATOMIC_REQUESTS': False,
     }
 }
+
 
 
 # Password validation
