@@ -14,7 +14,7 @@ class OrdenDeCompraViewSet(viewsets.ModelViewSet):
         """
         Retorna las órdenes de compra agrupadas por mesa.
         """
-        ordenes = self.get_queryset().filter(listo_a_pagar=False)
+        ordenes = self.get_queryset()
         data_agrupada = defaultdict(list)
 
         for orden in ordenes:
