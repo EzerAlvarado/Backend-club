@@ -3,12 +3,15 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from collections import defaultdict
 from club.models import Mesa, Producto, OrdenDeCompra, Usuario
+from club.filters.ordenes_de_compras import OrdenDeCompraFilter
 from club.serializers.ordenes_de_compras import OrdenDeCompraModelSerializer
 from club.serializers.services import crear_orden
 
 class OrdenDeCompraViewSet(viewsets.ModelViewSet):
     queryset = OrdenDeCompra.objects.all()
     serializer_class = OrdenDeCompraModelSerializer
+    filterset_class = OrdenDeCompraFilter
+    
     
     def list(self, request, *args, **kwargs):
         """
