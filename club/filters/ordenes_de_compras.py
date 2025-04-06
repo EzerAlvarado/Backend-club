@@ -11,6 +11,7 @@ class OrdenDeCompraFilter(filters.FilterSet):
     fecha_de_orden = django_filters.DateFromToRangeFilter()
     precio_orden = django_filters.RangeFilter()
     cantidad = django_filters.RangeFilter()
+    estado = django_filters.CharFilter(field_name='estado', lookup_expr='iexact') 
     
     class Meta:
         model = OrdenDeCompra

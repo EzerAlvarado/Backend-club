@@ -11,19 +11,34 @@ class OrdenDeCompraViewSet(viewsets.ModelViewSet):
     queryset = OrdenDeCompra.objects.all()
     serializer_class = OrdenDeCompraModelSerializer
     filterset_class = OrdenDeCompraFilter
-    
-    
+        
     def list(self, request, *args, **kwargs):
-        """
-        Retorna las órdenes de compra agrupadas por mesa.
-        """
-        ordenes = self.get_queryset()
+        base_queryset = self.get_queryset()
+        filtered_queryset = self.filter_queryset(base_queryset)
+        hay_filtros = bool(request.query_params)
+
+        if hay_filtros:
+            page = self.paginate_queryset(filtered_queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+            serializer = self.get_serializer(filtered_queryset, many=True)
+            return Response(serializer.data)
+
         data_agrupada = defaultdict(list)
+        for orden in filtered_queryset:
+            data_agrupada[orden.mesa_id].append(self.get_serializer(orden).data)
 
-        for orden in ordenes:
-            data_agrupada[orden.mesa_id].append(OrdenDeCompraModelSerializer(orden).data)
+        resultado = [
+            {
+                "mesa_id": mesa_id,
+                "ordenes": ordenes
+            }
+            for mesa_id, ordenes in data_agrupada.items()
+        ]
 
-        return Response(data_agrupada)
+        return Response(resultado)
 
     @action(detail=False, methods=['post'])
     def crear_orden(self, request):
